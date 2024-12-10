@@ -78,7 +78,7 @@ export default function Home() {
                       onClick={() => handleListItem(item)}
                       key={item}
                     >
-                     {item}
+                    test {item}
                     </li>
                   ))}
               </ul>
