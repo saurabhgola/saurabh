@@ -12,12 +12,15 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    loadLocations();
+    console.log("API URL:", process.env.API_URL);
+        loadLocations();
     loadRestaurants();
   }, []);
-
+  const apiurl = process.env.NEXT_PUBLIC_API_URL;
+  
   const loadLocations = async () => {
-    let response = await fetch("http://localhost:3000/api/customer/locations");
+    console.log("Using API URL:", apiurl);
+    let response = await fetch(`${apiurl}/api/customer/locations`);
     response = await response.json();
     if (response.success) {
       setLocations(response.result);
@@ -25,7 +28,7 @@ export default function Home() {
   };
 
   const loadRestaurants = async (params) => {
-    let url = "http://localhost:3000/api/customer";
+    let url = `${apiurl}/api/customer`;
     if (params?.location) {
       url = url + "?location=" + params.location;
     } else if (params?.restaurant) {

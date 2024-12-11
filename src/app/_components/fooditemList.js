@@ -8,8 +8,10 @@ function FoodItemList() {
   const loadFoodItems = async () => {
     const restaurantData = JSON.parse(localStorage.getItem("restaurantUser"));
     const resto_id = restaurantData._id;
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
     let response = await fetch(
-      `http://localhost:3000/api/restaurant/foods/${resto_id}`
+      `${apiurl}/api/restaurant/foods/${resto_id}`
     );
     response = await response.json();
     if (response.success) {
@@ -23,8 +25,10 @@ function FoodItemList() {
     loadFoodItems();
   }, []); // Loading food items on component mount
   const deleteFoodItem = async (id) => {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
     let response = await fetch(
-      `http://localhost:3000/api/restaurant/foods/${id}`,
+      `${apiurl}/api/restaurant/foods/${id}`,
       {
         method: "DELETE",
       }

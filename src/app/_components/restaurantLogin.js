@@ -14,7 +14,9 @@ function RestaurantLogin() {
     } else {
       setError(false);
     }
-    let response = await fetch("http://localhost:3000/api/restaurant", {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
+    let response = await fetch(`${apiurl}/api/restaurant`, {
       method: "POST",
       body: JSON.stringify({ email, password, login: true }),
     });

@@ -16,7 +16,9 @@ function Pages(props) {
 
   const loadRestaurantDetails = async () => {
     const id = props.searchParams.id;
-    let response = await fetch(`http://localhost:3000/api/customer/${id}`);
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
+    let response = await fetch(`${apiurl}/api/customer/${id}`);
     response = await response.json();
     if (response.success) {
       setRestaurantDetails(response.details);
@@ -43,7 +45,9 @@ function Pages(props) {
   };
 
   const handleAddFoodAfterPayment = async () => {
-    const response = await fetch("http://localhost:3000/api/food", {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
+    const response = await fetch(`${apiurl}/api/food`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
