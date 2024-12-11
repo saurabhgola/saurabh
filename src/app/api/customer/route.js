@@ -14,7 +14,9 @@ export async function  GET(request){
         let restaurantName= queryParams.get("restaurant")
         filter={restaurantName:{$regex: new RegExp(restaurantName,'i')}}
      }   
-    await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+    // await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+    await mongoose.connect(process.env.MONGODB_URI);
+
     let result=await restaurantSchema.find(filter);
 
     return NextResponse.json({success:true,result})

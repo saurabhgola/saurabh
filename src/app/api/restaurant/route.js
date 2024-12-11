@@ -5,10 +5,12 @@ import { restaurantSchema } from "../../lib/restaurantModel"; // Correct import
 
 export async function GET() {
   // Connect to MongoDB
-  await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  // await mongoose.connect(process.env.MONGODB_URI, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
+  await mongoose.connect(process.env.MONGODB_URI);
+
 
   // Fetch data from the database
   const data = await restaurantSchema.find();
@@ -22,7 +24,9 @@ export async function POST(request) {
   let payload = await request.json();
   let result;
   let success = false;
-    await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+    // await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+    await mongoose.connect(process.env.MONGODB_URI);
+
   if (payload.login) {
     // use  is for login
     result = await restaurantSchema.findOne({
