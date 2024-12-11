@@ -5,7 +5,9 @@ import { foodSchema } from "../../../lib/foodsmodel";
 
 export async function GET(request, content) {
   const id = content.params.id;
-  await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+  // await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+  await mongoose.connect(process.env.MONGODB_URI);
+
   const details = await restaurantSchema.findOne({ _id: id });
   const foodItems = await foodSchema.find({
     resto_id: id,
