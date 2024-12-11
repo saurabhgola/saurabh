@@ -24,8 +24,10 @@ function EditeFooditems(props) {
     if (restaurantdata) {
       resto_id = restaurantdata._id;
     }
+      const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
     let response = await fetch(
-      "http://localhost:3000/api/restaurant/foods/edit/" + props.params.id,
+      `${apiurl}/api/restaurant/foods/edit/` + props.params.id,
       {
         method: "PUT",
         body: JSON.stringify({
@@ -51,8 +53,10 @@ function EditeFooditems(props) {
   };
 
   const handleloadFoodItem = async () => {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
     let response = await fetch(
-      "http://localhost:3000/api/restaurant/foods/edit/" + props.params.id
+      `${apiurl}/api/restaurant/foods/edit/` + props.params.id
     );
     response = await response.json();
     if (response.success) {

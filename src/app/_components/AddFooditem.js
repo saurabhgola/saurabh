@@ -19,7 +19,9 @@ function AddFooditems({addlist}) {
     if (restaurantdata) {
       resto_id = restaurantdata._id;
     }
-    let response = await fetch("http://localhost:3000/api/restaurant/foods", {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
+    let response = await fetch(`${apiurl}/api/restaurant/foods`, {
       method: "POST",
       body: JSON.stringify({
         name,

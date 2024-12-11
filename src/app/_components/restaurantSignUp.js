@@ -49,7 +49,9 @@ function RestaurantSignUp() {
       contectNo,
     ];
     console.log(data);
-    const result = await fetch("http://localhost:3000/api/restaurant", {
+    const apiurl = process.env.NEXT_PUBLIC_API_URL;
+
+    const result = await fetch(`${apiurl}/api/restaurant`, {
       method: "POST",
       body: JSON.stringify({
         email,
