@@ -1,0 +1,25 @@
+
+name: React CI/CD Pipeline
+
+on:
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+
+jobs:
+  display:
+    runs-on: ubuntu-latest
+    env:
+      platform: Azure
+      region: central
+      profile_path: profile/
+      
+
+    steps:
+      # Check out the code
+      - name: Checkout Code
+        if: ${{ env.platform == 'Azure' }} 
+        run: |
+          echo "The platform is ${{ env.platform }}"  # Corrected the typo "platfrom"
+          echo "The region is ${{ env.region }}"  # Corrected to use `${{ env.region }}`
